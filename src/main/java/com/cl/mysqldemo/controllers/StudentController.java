@@ -53,6 +53,10 @@ public class StudentController {
                         phoneNumber, parentName)
         );
     }
-
-
+    @DeleteMapping("deleteById")
+    public Boolean deleteStudent(@RequestParam Long id) {
+        return studentService.deleteById(id);
+    }
 }
+
+

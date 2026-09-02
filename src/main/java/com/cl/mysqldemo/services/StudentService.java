@@ -50,4 +50,10 @@ public class StudentService {
 
         return savedStudent.getId();
     }
+
+    public List<Student> getAllStudents() {
+        return studentRepository.getAllStudent();
+    }
+
+
 }
