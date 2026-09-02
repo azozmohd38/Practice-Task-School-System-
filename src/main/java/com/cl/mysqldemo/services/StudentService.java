@@ -64,6 +64,30 @@ public class StudentService {
 
         return new Student();
     }
+    public Student updateStudent(Long id,
+                                 String name,
+                                 String major,
+                                 String gender,
+                                 String phoneNumber,
+                                 String parentName) {
+
+        Student studentToUpdate = studentRepository.getById(id);
+
+        if (studentToUpdate == null) {
+            return new Student();
+        }
+
+        studentToUpdate.setUpdatedDate(new Date());
+        studentToUpdate.setName(name);
+        studentToUpdate.setMajor(major);
+        studentToUpdate.setGender(gender);
+        studentToUpdate.setPhoneNumber(phoneNumber);
+        studentToUpdate.setParentName(parentName);
+
+        studentToUpdate = studentRepository.save(studentToUpdate);
+
+        return studentToUpdate;
+    }
 
 
 }
