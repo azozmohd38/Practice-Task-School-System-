@@ -63,13 +63,12 @@ public class StudentService {
         }
 
         return new Student();
-    }
-    public Student updateStudent(Long id,
-                                 String name,
-                                 String major,
-                                 String gender,
-                                 String phoneNumber,
-                                 String parentName) {
+    }public Student updateStudent(Long id,
+                                  String name,
+                                  String major,
+                                  String gender,
+                                  String phoneNumber,
+                                  String parentName) {
 
         Student studentToUpdate = studentRepository.getById(id);
 
@@ -87,6 +86,22 @@ public class StudentService {
         studentToUpdate = studentRepository.save(studentToUpdate);
 
         return studentToUpdate;
+    }
+
+    public Boolean deleteById(Long id) {
+
+        Student studentToUpdate = studentRepository.getById(id);
+
+        if (studentToUpdate == null) {
+            return false;
+        }
+
+        studentToUpdate.setIsActive(false);
+        studentToUpdate.setUpdatedDate(new Date());
+
+        studentRepository.save(studentToUpdate);
+
+        return true;
     }
 
 
