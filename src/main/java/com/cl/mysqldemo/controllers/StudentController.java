@@ -36,4 +36,8 @@ public class StudentController {
         List<StudentDTO> students = StudentDTO.convertToDTO(studentService.getAllStudents());
         return students;
     }
+    @GetMapping("getById")
+    public StudentDTO getById(@RequestParam Long id) {
+        return StudentDTO.convertToDTO(studentService.getById(id));
+    }
 }
