@@ -1,11 +1,11 @@
 package com.cl.mysqldemo.controllers;
 
+import com.cl.mysqldemo.dto.StudentDTO;
 import com.cl.mysqldemo.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("student")
@@ -26,7 +26,14 @@ public class StudentController {
             @RequestParam String phoneNumber,
             @RequestParam String parentName,
             @RequestParam Long schoolId
-    ){
-        return studentService.addStudent(name, major, gender, phoneNumber, parentName, schoolId);
+    ) {
+        return studentService.addStudent(name, major, gender,
+                phoneNumber, parentName, schoolId);
+    }
+
+    @GetMapping("getAll")
+    public List<StudentDTO> getAllStudents() {
+        List<StudentDTO> students = StudentDTO.convertToDTO(studentService.getAllStudents());
+        return students;
     }
 }
