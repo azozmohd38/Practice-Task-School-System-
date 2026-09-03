@@ -53,7 +53,9 @@ public class StudentService {
     }
 
     public List<Student> getAllStudents() {
+
         return studentRepository.getAllStudent();
+
     }
     public Student getById(Long id) {
         Optional<Student> student = studentRepository.findById(id);
